@@ -19,7 +19,9 @@ class SplashScreen extends StatelessWidget {
             final cubit = OnSplashCubit.get(context);
 
             return Scaffold(
+              backgroundColor: Colors.white,
               body: Container(
+                // color: Colors.black,
                 // color: AppColors.primaryColor,
                 child: Stack(
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,7 +51,9 @@ class SplashScreen extends StatelessWidget {
                     // ),
                     Positioned.fill(
                       child: Container(
+
                         decoration: const BoxDecoration(
+                          // color: Colors.white,
                           // gradient: LinearGradient(
                           //   begin: Alignment.topCenter,
                           //   end: Alignment.bottomCenter,

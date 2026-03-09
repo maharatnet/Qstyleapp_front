@@ -15,6 +15,15 @@ TextStyle _getTextStyleTwo(double fontSize, FontWeight fontWeight, Color color) 
       color: color,
       fontFamily: "NunitoSans",
       // fontFamily: "Rasa",
+      decoration: TextDecoration.lineThrough,
+      fontWeight: fontWeight);
+}
+TextStyle _getTextStyleUnderTwo(double fontSize, FontWeight fontWeight, Color color) {
+  return TextStyle(
+      fontSize: fontSize,
+      color: color,
+      fontFamily: "NunitoSans",
+      // fontFamily: "Rasa",
       decoration: TextDecoration.underline,
       fontWeight: fontWeight);
 }
@@ -37,6 +46,10 @@ TextStyle getRegularLineStyle(
     {double fontSize = FontSize.s12, required Color color}) {
   return _getTextStyleTwo(fontSize, FontWeightManager.regular, color);
 }
+TextStyle getRegularUnderLineStyle(
+    {double fontSize = FontSize.s12, required Color color}) {
+  return _getTextStyleUnderTwo(fontSize, FontWeightManager.regular, color);
+}
 
 // medium style
 
@@ -54,8 +67,8 @@ TextStyle getLightStyle(
 
 // bold style
 
-TextStyle getBoldStyle({double fontSize = FontSize.s12, required Color color}) {
-  return _getTextStyle(fontSize, FontWeightManager.bold, color,);
+TextStyle getBoldStyle({double fontSize = FontSize.s12,  Color? color}) {
+  return _getTextStyle(fontSize, FontWeightManager.bold, color??Colors.black,);
 }
 
 // semibold style

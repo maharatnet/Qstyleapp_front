@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maharat_ecommerce/component/component.dart';
+import 'package:maharat_ecommerce/core/shared_preferefance_value.dart';
+import 'package:maharat_ecommerce/presentation/bottom_nav/bottom_navagiation.dart';
 import 'package:maharat_ecommerce/presentation/on_boarding_screen/on_boarding_screen.dart';
 
 
@@ -14,6 +16,12 @@ class OnSplashCubit extends Cubit<OnSplashState> {
   late Timer _timer;
 
   Future<void> initSplash(BuildContext context) async {
+    // print("context.locale.toString()");
+    // print(context.locale.toString());
+    try {
+      SharedPreferenceGetValue.saveLanguage(context.locale.toString());
+    }catch(e){}
+
     bool is_boarding = true;
     String token = "";
     // try {
@@ -23,7 +31,8 @@ class OnSplashCubit extends Cubit<OnSplashState> {
     //
     // }
     _timer = Timer(const Duration(seconds: 5), () {
-    navigateAndFinish(context, OnBoardingScreen());
+    navigateAndFinish(context, BottomNavigationScreen());
+    // navigateAndFinish(context, OnBoardingScreen());
     });
   }
 }

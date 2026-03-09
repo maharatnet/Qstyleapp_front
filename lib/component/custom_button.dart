@@ -18,7 +18,8 @@ class CustomButton extends StatelessWidget {
   final double? borderWidth;
   final double? width;
 
-  const CustomButton({Key? key, this.onTap,this.width, required this.buttonText, this.isBuy= false, this.isBorder = false, this.backgroundColor, this.radius, this.textColor, this.fontSize, this.leftIcon, this.borderColor, this.borderWidth}) : super(key: key);
+  const CustomButton({Key? key, this.onTap,this.width, required this.buttonText,
+    this.isBuy= false, this.isBorder = false, this.backgroundColor, this.radius, this.textColor, this.fontSize, this.leftIcon, this.borderColor, this.borderWidth}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,11 @@ class CustomButton extends StatelessWidget {
       GestureDetector(
         onTap: onTap,
 
-        child: Container(
+        // child: Container(
 
-          child: ClipPath(
-            clipper: CustomRectangleClipper(),
+          // child: ClipPath(
+
+            // clipper: CustomRectangleClipper(),
             // Container(height: 45,
             //   width: width==null?MediaQuery.sizeOf(context).width:width,
             //   alignment: Alignment.center,
@@ -43,18 +45,22 @@ class CustomButton extends StatelessWidget {
             //       borderRadius: BorderRadius.circular(radius !=null ? radius! : isBorder? Dimensions.paddingSizeExtraSmall : Dimensions.paddingSizeSmall)),
             //
             child:
-            Container(height: 70,
-              width:MediaQuery.sizeOf(context).width*.8 ,
-              // width==null?MediaQuery.sizeOf(context).width:width,
+
+            Container(
+              // height: 70,
+              height: 50,
+              width: //MediaQuery.sizeOf(context).width*.8 ,
+              width==null?MediaQuery.sizeOf(context).width:width,
               alignment: Alignment.center,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
                 border: isBorder? Border.all(color: borderColor??Theme.of(context).primaryColor, width:  borderWidth ??1): null,
                 color:  backgroundColor ?? (isBuy? const Color(0xffFE961C) : Theme.of(context).primaryColor),
                 // borderRadius: BorderRadius.circular(radius !=null ? radius! : isBorder? Dimensions.paddingSizeExtraSmall : Dimensions.paddingSizeSmall)
               ),
 
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 0.0),
                 child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   if(leftIcon != null)
                     Padding(padding: const EdgeInsets.only(right: 5),
@@ -72,8 +78,8 @@ class CustomButton extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ),
+          // ),
+        // ),
       );
   }
 }
@@ -83,14 +89,32 @@ class CustomRectangleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path();
+    const radius = 12.0;
 
-    // الجزء العلوي
-    path.lineTo(0, size.height * 0.2); // ارفع الجزء العلوي هنا
-    path.lineTo(size.width, size.height * 0.5);
+    // ابدأ من أول نقطة مع كورنر دائري
+    path.moveTo(0, radius);
 
-    // اكمل الرسم حتى النهاية
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
+    // الزاوية العليا اليسار
+    path.quadraticBezierTo(0, 0, radius, 0);
+
+    // خط مائل للأعلى
+    path.lineTo(size.width - radius, size.height * 0.5);
+
+    // الزاوية العليا اليمين
+    path.quadraticBezierTo(size.width, size.height * 0.5, size.width, size.height * 0.5 + radius);
+
+    // نزول لأسفل
+    path.lineTo(size.width, size.height - radius);
+
+    // الزاوية السفلى اليمين
+    path.quadraticBezierTo(size.width, size.height, size.width - radius, size.height);
+
+    // خط أفقي إلى اليسار
+    path.lineTo(radius, size.height);
+
+    // الزاوية السفلى اليسار
+    path.quadraticBezierTo(0, size.height, 0, size.height - radius);
+
     path.close();
 
     return path;
@@ -99,3 +123,24 @@ class CustomRectangleClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomRectangleClipper oldClipper) => false;
 }
+
+// class CustomRectangleClipper extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     final path = Path();
+//
+//     // الجزء العلوي
+//     path.lineTo(0, size.height * 0.2); // ارفع الجزء العلوي هنا
+//     path.lineTo(size.width, size.height * 0.5);
+//
+//     // اكمل الرسم حتى النهاية
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(0, size.height);
+//     path.close();
+//
+//     return path;
+//   }
+//
+//   @override
+//   bool shouldReclip(CustomRectangleClipper oldClipper) => false;
+// }

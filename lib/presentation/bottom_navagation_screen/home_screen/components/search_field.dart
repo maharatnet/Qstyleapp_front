@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:maharat_ecommerce/component/constant.dart';
+import 'package:maharat_ecommerce/core/textApp.dart';
 
 
 class SearchField extends StatelessWidget {
@@ -22,7 +24,7 @@ class SearchField extends StatelessWidget {
           border: searchOutlineInputBorder,
           focusedBorder: searchOutlineInputBorder,
           enabledBorder: searchOutlineInputBorder,
-          hintText: "Search product",
+          hintText: tr(TextApp.searchProduct),
           prefixIcon: const Icon(Icons.search),
         ),
       ),

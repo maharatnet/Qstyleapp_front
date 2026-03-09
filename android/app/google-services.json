@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "347105681923",
+    "project_id": "maharatecommerce",
+    "storage_bucket": "maharatecommerce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347105681923:android:2dc3d43a968290dda5a436",
+        "android_client_info": {
+          "package_name": "edx.maharat.ecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlCiEfOqRITUJTq2DAJGJEJKjlPz72YqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

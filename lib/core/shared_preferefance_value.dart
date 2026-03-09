@@ -27,11 +27,11 @@ class SharedPreferenceGetValue {
   // static void saveCountry(String token) {
   //   CacheHelper.saveData(key: "CountryUser", value: token);
   // }
-  static String getCountryID() {
-    return  CacheHelper.getData(key: "CountryUserID")==null?"21ed5e5f-4dbd-448f-a6b8-4164ebd9f53e":CacheHelper.getData(key: "CountryUserID");
+  static String getLanguage() {
+    return  CacheHelper.getData(key: "CountryLanguageID")==null?"en":CacheHelper.getData(key: "CountryLanguageID");
   }
-  static void saveCountryID(String token) {
-    CacheHelper.saveData(key: "CountryUserID", value: token);
+  static void saveLanguage(String token) {
+    CacheHelper.saveData(key: "CountryLanguageID", value: token);
   }
 
   static void saveNameProfile(String token) {
@@ -41,6 +41,14 @@ class SharedPreferenceGetValue {
   static String getNameProfile() {
     return CacheHelper.getData(key: "NameProfile") == null ? "" : CacheHelper.getData(
         key: "NameProfile");
+  }
+  static void saveImageProfile(String token) {
+    CacheHelper.saveData(key: "ImageProfile", value: token);
+  }
+
+  static String getImageProfile() {
+    return CacheHelper.getData(key: "ImageProfile") == null ? "" : CacheHelper.getData(
+        key: "ImageProfile");
   }
   static void saveDataId(String id) {
     CacheHelper.saveData(key: "DataId", value: id);

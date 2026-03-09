@@ -1,9 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 import 'package:maharat_ecommerce/component/color_manger.dart';
+import 'package:maharat_ecommerce/component/component.dart';
 import 'package:maharat_ecommerce/component/font_manager.dart';
 import 'package:maharat_ecommerce/component/styles_manager.dart';
+import 'package:maharat_ecommerce/core/shared_preferefance_value.dart';
+import 'package:maharat_ecommerce/core/textApp.dart';
+import 'package:maharat_ecommerce/presentation/bottom_nav/bottom_navagiation.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -18,17 +23,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _selectLang(String lang) {
     setState(() {
       _selectedLang = lang;
+      context.setLocale(Locale(lang));
+      SharedPreferenceGetValue.saveLanguage(lang);
+      navigateAndFinish(context,BottomNavigationScreen());
     });
 
     // هنا تضيف كود تغيير اللغة حسب التطبيق
   }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(SharedPreferenceGetValue.getLanguage());
+    _selectedLang = SharedPreferenceGetValue.getLanguage();
+    refreshData();
+  }
 
+  void refreshData(){
+    setState(() {
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title:  Text('الإعدادات',style: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s18),),
+        title:  Text(tr(TextApp.language),style: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s18),),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.white,
@@ -56,8 +77,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.blue.shade50 : Colors.white,
-          border: Border.all(color: isSelected ? Colors.blue : Colors.grey.shade300, width: 2),
+          color: isSelected ? Colors.grey.shade50 : Colors.white,
+          border: Border.all(color: isSelected ? Colors.black : Colors.grey.shade300, width: 2),
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
@@ -72,7 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             Icon(
               isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
-              color: isSelected ? Colors.blue : Colors.grey,
+              color: isSelected ? Colors.black : Colors.grey,
               size: 24,
             ),
             const SizedBox(width: 12),
@@ -81,7 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: isSelected ? Colors.blue : Colors.black87,
+                color: isSelected ? Colors.black : Colors.black87,
               ),
             ),
           ],

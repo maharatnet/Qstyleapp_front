@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:maharat_ecommerce/component/app_constants.dart';
 import 'package:maharat_ecommerce/core/shared_preferefance_value.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 
 class DioHelper {
@@ -27,10 +30,13 @@ class DioHelper {
       )async {
     dio.options.headers =
     {
-      'Authorization': token ??'test',
+      'Accept-Language':SharedPreferenceGetValue.getLanguage(),
+
+      // 'Authorization': token ??'test',
       'Authorization': SharedPreferenceGetValue.token.isEmpty? '':"Bearer ${SharedPreferenceGetValue.token}",
        // "country":await SharedPreferenceGetValue.getCountryID(),
        // "api-token":"TESTPOSTMAN",
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     };
     print(dio.options.headers.toString());
@@ -49,13 +55,15 @@ class DioHelper {
   {
     dio.options.headers =
     {
-      'lang':lang,
-      'Authorization': token ??'test',
+      'Accept-Language':SharedPreferenceGetValue.getLanguage(),
+      // 'Authorization': token ??'test',
 
       'Authorization': SharedPreferenceGetValue.token.isEmpty? '':"Bearer ${SharedPreferenceGetValue.token}",
        // "api-token":"TESTPOSTMAN",
       // "country":await SharedPreferenceGetValue.getCountryID(),
       'Content-Type': 'application/json',
+      'Accept': 'application/json',
+
     };
 
     return dio.post(
@@ -74,13 +82,16 @@ class DioHelper {
   {
     dio.options.headers =
     {
-      'lang':lang,
-      'Authorization': token ??'test',
-      // 'Authorization': SharedPreferenceGetValue.token.isEmpty? '':"Bearer ${SharedPreferenceGetValue.token}",
+      // 'lang':lang,
+      'Accept-Language':SharedPreferenceGetValue.getLanguage(),
+
+      // 'Authorization': token ??'test',
+      'Authorization': SharedPreferenceGetValue.token.isEmpty? '':"Bearer ${SharedPreferenceGetValue.token}",
       // "country":await SharedPreferenceGetValue.getCountryID(),
       // "api-token":"TESTPOSTMAN",
       'Content-Type': 'multipart/form-data',
       'Accept': 'application/json',
+
     };
 
     return dio.post(
@@ -99,10 +110,12 @@ class DioHelper {
   {
     dio.options.headers =
     {
-      'lang':lang,
-      'Authorization': token??'',
+      // 'lang':lang,
+      'Accept-Language':SharedPreferenceGetValue.getLanguage(),
+
+      'Authorization': SharedPreferenceGetValue.token.isEmpty? '':"Bearer ${SharedPreferenceGetValue.token}",
       // "country":await SharedPreferenceGetValue.getCountryID(),
-      "api-token":"TESTPOSTMAN",
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     };
 
@@ -123,9 +136,10 @@ class DioHelper {
   {
     dio.options.headers =
     {
-      'lang':lang,
-      'Authorization': "Bearer $token" ,
+      'Accept-Language':SharedPreferenceGetValue.getLanguage(),
+      'Authorization': SharedPreferenceGetValue.token.isEmpty? '':"Bearer ${SharedPreferenceGetValue.token}",
       // "api-token":"poOLz4qcSBdmbS9X",
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     };
 

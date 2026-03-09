@@ -21,7 +21,7 @@ class FormError extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(
-          "assets/icons/Error.svg",
+          "assets/icons/error.svg",
           height: 16,
           width: 16,
         ),

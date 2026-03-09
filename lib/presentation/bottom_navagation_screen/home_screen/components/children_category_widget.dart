@@ -3,6 +3,7 @@ import 'package:maharat_ecommerce/component/component.dart';
 import 'package:maharat_ecommerce/component/constant.dart';
 import 'package:maharat_ecommerce/component/font_manager.dart';
 import 'package:maharat_ecommerce/component/styles_manager.dart';
+import 'package:maharat_ecommerce/core/textApp.dart';
 import 'package:maharat_ecommerce/presentation/bottom_navagation_screen/category_details/category_item_screen.dart';
 import 'package:maharat_ecommerce/presentation/bottom_navagation_screen/home_screen/components/female_category_widget.dart';
 
@@ -26,7 +27,7 @@ class ChildrenCategoryWidget extends StatelessWidget {
         // ),
         CategoryOfferCard(
           image: "assets/images/Image Banner 3.png",
-          category: "Children Category",
+          category: TextApp.kids_category,
           numOfBrands: 8,
           press: () {
             // Navigator.pushNamed(context, ProductsScreen.routeName);
@@ -36,7 +37,7 @@ class ChildrenCategoryWidget extends StatelessWidget {
         Wrap(children: dataList.map((e)=> Padding(padding: EdgeInsets.all(10),
           child: GestureDetector(
             onTap: (){
-              navigateTo(context, CategoryItemScreen());
+              navigateTo(context, CategoryItemScreen(categoryId: 1, is_international:1,));
             },
             child: Container(
               width: MediaQuery.sizeOf(context).width*.24,
